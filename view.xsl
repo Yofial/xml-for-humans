@@ -4,18 +4,23 @@
 
 	<!-- Root Template -->
 	<xsl:template match="/">
+
+		<xsl:variable name="title">
+			<xsl:value-of select="document('map.xml')/map/entry[@key='page-title']" />
+		</xsl:variable>
+
 		<html>
 			<head>
 				<link rel="stylesheet"
 					href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 					integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 					crossorigin="anonymous" />
-				<title>XML Flat View</title>
+				<title><xsl:value-of select="$title" /></title>
 			</head>
 			<body>
 				<div class="container">
 					<div class="row">
-						<h1>XML Flat View</h1>
+						<h1><xsl:value-of select="$title" /></h1>
 						<table class="table table-bordered">
 							<xsl:apply-templates select="node()" />
 						</table>
